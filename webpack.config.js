@@ -25,7 +25,7 @@ module.exports = {
     plugins: function () {
         var options = [
             new HtmlWebpackPlugin({
-                title: '专利图形搜索系统',
+                title: '无感支付',
                 hash: true,
                 inject: false,
                 filename: 'index.html',

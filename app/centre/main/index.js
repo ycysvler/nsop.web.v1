@@ -6,7 +6,7 @@ import './main.less';
 const {SubMenu} = Menu;
 const {Header, Content, Sider} = Layout;
 
-export default class Centre extends React.Component {
+export default class CentrePlatform extends React.Component {
     constructor(props) {
         super(props);
     }

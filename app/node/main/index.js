@@ -6,7 +6,7 @@ import './main.less';
 const {SubMenu} = Menu;
 const {Header, Content, Sider} = Layout;
 
-export default class Node extends React.Component {
+export default class NodeSystem extends React.Component {
     constructor(props) {
         super(props);
     }
