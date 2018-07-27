@@ -1,7 +1,7 @@
 import React from 'react';
 import {Layout, Menu, Button} from 'antd';
 import {HashRouter as Router,Link, Switch, Route} from 'react-router-dom';
-import OrganizationList from '../﻿organization/list';
+import OrganizationList from '../org/list';
 import NotFound from '../../notfound';
 import './main.less';
 const {SubMenu} = Menu;
@@ -36,7 +36,7 @@ export default class CentrePlatform extends React.Component {
                         </Layout>
                     </div>
                 </Header>
-                <Layout>
+                <Layout >
                     <Router>
                         <Switch>
                             {/*外观.快速检索.历史查询*/}
