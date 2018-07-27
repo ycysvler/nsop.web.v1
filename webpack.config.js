@@ -25,7 +25,7 @@ module.exports = {
     plugins: function () {
         var options = [
             new HtmlWebpackPlugin({
-                title: '无感支付',
+                title: ' ',
                 hash: true,
                 inject: false,
                 filename: 'index.html',
