@@ -3,31 +3,32 @@
  */
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Layout, Icon,Table, Breadcrumb,Button} from 'antd';
+import {Layout, Icon, Table, Breadcrumb, Button} from 'antd';
 import {NotFound} from '../../notfound';
+import {OrganizationStore, OrganizationActions} from './reflux.js';
 
 const {Header, Footer, Sider, Content} = Layout;
 
 export default class OrganizationList extends React.Component {
     constructor(props) {
         super(props);
-        //this.unsubscribe_user = UserStore.listen(this.onStatusChange.bind(this));
-        this.state = {items:[]};
+        this.unsubscribe = OrganizationStore.listen(this.onStatusChange.bind(this));
+        this.state = {items: []};
     }
 
     componentWillUnmount() {
-        //this.unsubscribe_user();
+        this.unsubscribe();
     }
 
     onStatusChange = (type, data) => {
-        if(type === 'getList'){
+        if (type === 'getList') {
             console.log('items', data);
-            this.setState({items:data.list, total:data.total});
+            this.setState({items: data.list, total: data.total});
         }
     }
 
     componentDidMount() {
-        //UserActions.getList();
+        OrganizationActions.getList();
     }
 
 
@@ -39,23 +40,31 @@ export default class OrganizationList extends React.Component {
 
     columns = [
         {
-            key:'id',
-            title: '警员编号',
-            dataIndex: 'number',
+            title: '编号',
+            dataIndex: 'code',
         },
         {
-        title: '账号',
-        dataIndex: 'userName',
-    }, {
-        title: '姓名',
-        dataIndex: 'name',
-    }, {
-        title: '警局',
-        dataIndex: 'orgName',
-    }, {
-        title: '部门',
-        dataIndex: 'deptName',
-    }];
+            title: '名称',
+            dataIndex: 'name',
+        },
+        {
+            key: 'orgid',
+            title: '检查站ID',
+            dataIndex: 'orgid'
+        },
+
+        {
+            title: '上级ID',
+            dataIndex: 'parentid',
+        },
+        {
+            title: '地址',
+            dataIndex: 'host',
+        },
+        {
+            title: '类型',
+            dataIndex: 'type',
+        }];
 
 
     rowSelection = {
@@ -73,30 +82,32 @@ export default class OrganizationList extends React.Component {
         }),
     };
 
-    onPageChange=(pageNumber)=> {
+    onPageChange = (pageNumber) => {
         UserActions.getList(pageNumber, 10);
     }
 
     render() {
         return (<Layout>
-                <Breadcrumb>
+                <Breadcrumb className="breadcrumb">
                     <Breadcrumb.Item>系统管理</Breadcrumb.Item>
                     <Breadcrumb.Item>用户管理</Breadcrumb.Item>
                 </Breadcrumb>
 
                 {/*<div className="list-toolbar">*/}
 
-                    {/*<Link to='/main/system/user/info'><Button type="primary">新建用户</Button></Link>*/}
+                {/*<Link to='/main/system/user/info'><Button type="primary">新建用户</Button></Link>*/}
                 {/*</div>*/}
 
                 <Table
-                    rowKey="id"
+                    rowKey="_id"
                     rowSelection={this.rowSelection} columns={this.columns} dataSource={this.state.items}
-                pagination={{showSizeChanger:true,
-                    onChange:this.onPageChange,
-                    pageSizeOptions:["2", "3", "4", "5"],
-                    defaultPageSize: 10, total:this.state.total,
-                    hideOnSinglePage:true}} size="middle"/>
+                    pagination={{
+                        showSizeChanger: true,
+                        onChange: this.onPageChange,
+                        pageSizeOptions: ["2", "3", "4", "5"],
+                        defaultPageSize: 10, total: this.state.total,
+                        hideOnSinglePage: true
+                    }} size="middle"/>
             </Layout>
         );
     }

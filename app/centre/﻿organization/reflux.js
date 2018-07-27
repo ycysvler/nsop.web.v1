@@ -26,11 +26,10 @@ const OrganizationStore = Reflux.createStore({
                 self.items = [];
             }
             else {
-                self.items = data.body.list;
-                total = data.body.total;
+                self.items = data.data;
             }
 
-            self.trigger('getList', {total: total, list: self.items, param: param});
+            self.trigger('getList', {total: self.items.length, list: self.items, param: param});
         });
     }
 
