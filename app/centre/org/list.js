@@ -24,7 +24,7 @@ export default class OrganizationList extends React.Component {
         if (type === 'getList') {
             this.setState({items: data.list, total: data.total});
         }
-        if (type === 'delete') {
+        if (type === 'remove') {
             OrganizationActions.getList();
         }
     }

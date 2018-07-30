@@ -12,7 +12,7 @@ class HttpProxy {
                 data: param,
                 beforeSend: function (xhr) {
                     let token = self.getToken();
-                    xhr.setRequestHeader("authorToken", token);
+                    //xhr.setRequestHeader("authorToken", token);
                 },
                 success: function (data, status) {
                     callback(status, data);
@@ -37,7 +37,7 @@ class HttpProxy {
                 dataType: "json",
                 beforeSend: function (xhr) {
                     let token = self.getToken();
-                    xhr.setRequestHeader("authorToken", token);
+                    //xhr.setRequestHeader("authorToken", token);
                 },
                 success: function (data, status) {
                     if (data.statusCode === 401) {
@@ -89,7 +89,7 @@ class HttpProxy {
             {
                 url: url,
                 type: "DELETE",
-                data: param,
+                data: JSON.stringify(param),
                 cache: false,
                 contentType: "application/json;charset=utf-8",
                 processData: false,
