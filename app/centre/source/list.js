@@ -5,15 +5,15 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {Layout, Icon, Table, Breadcrumb, Button} from 'antd';
 import {NotFound} from '../../notfound';
-import {OrganizationStore, OrganizationActions} from './reflux.js';
+import {SourceStore, SourceActions} from './reflux.js';
 
 const {Header, Footer, Sider, Content} = Layout;
 
-export default class OrganizationList extends React.Component {
+export default class SourceList extends React.Component {
     constructor(props) {
         super(props);
-        this.unsubscribe = OrganizationStore.listen(this.onStatusChange.bind(this));
-        this.state = {items: []};
+        this.unsubscribe = SourceStore.listen(this.onStatusChange.bind(this));
+        this.state = {items: [], total: 0};
     }
 
     componentWillUnmount() {
@@ -22,56 +22,44 @@ export default class OrganizationList extends React.Component {
 
     onStatusChange = (type, data) => {
         if (type === 'getList') {
-            this.setState({items: data.list, total: data.total});
+            this.setState({items: data, total: data.length});
         }
         if (type === 'remove') {
-            OrganizationActions.getList();
+            SourceActions.getList();
         }
     }
 
     componentDidMount() {
-        OrganizationActions.getList();
-    }
-
-
-    handleClick = (e) => {
-        this.setState({
-            current: e.key,
-        });
+        SourceActions.getList();
     }
 
     columns = [
         {
-            title: '编号',
-            dataIndex: 'code',
-        },
-        {
-            title: '名称',
-            dataIndex: 'name',
-        },
-        {
-            key: 'orgid',
-            title: '检查站ID',
-            dataIndex: 'orgid'
-        },
-
-        {
-            title: '上级ID',
-            dataIndex: 'parentid',
-        },
-        {
-            title: '地址',
-            dataIndex: 'host',
-        },
-        {
-            title: '类型',
+            title: 'type',
             dataIndex: 'type',
+        },
+        {
+            title: 'version',
+            dataIndex:'version',
+            render: (text,record) =>{ return <Link to={`/centre/source/${record._id}`}>{text}</Link>},
+        },
+        {
+            title: 'targetpath',
+            dataIndex: 'targetpath',
+        },
+        {
+            title: 'sourcepath',
+            dataIndex: 'sourcepath'
+        },
+        {
+            title: 'describe',
+            dataIndex: 'describe',
         }];
 
 
     rowSelection = {
         onChange: (selectedRowKeys, selectedRows) => {
-            this.setState({selectedRowKeys:selectedRowKeys});
+            this.setState({selectedRowKeys: selectedRowKeys});
             console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
         },
         onSelect: (record, selected, selectedRows) => {
@@ -81,17 +69,13 @@ export default class OrganizationList extends React.Component {
             console.log(selected, selectedRows, changeRows);
         },
         getCheckboxProps: record => ({
-            disabled: record.key === '3',
+            disabled: record._id === '3',
         }),
     };
 
-    onPageChange = (pageNumber) => {
-        OrganizationActions.getList(pageNumber, 10);
-    };
-
-    onDelete=()=>{
+    onDelete = () => {
         console.log(this.state.selectedRowKeys);
-        OrganizationActions.remove(this.state.selectedRowKeys);
+        SourceActions.remove(this.state.selectedRowKeys);
     };
 
     render() {
@@ -102,7 +86,7 @@ export default class OrganizationList extends React.Component {
                 </Breadcrumb>
 
                 <div className="list-toolbar">
-                    <Button type="danger"  className="margin-right-8" onClick={this.onDelete}>删除节点</Button>
+                    <Button type="danger" className="margin-right-8" onClick={this.onDelete}>删除节点</Button>
                     <Link to='/main/system/user/info'><Button type="primary">新建节点</Button></Link>
                 </div>
 
@@ -111,7 +95,6 @@ export default class OrganizationList extends React.Component {
                     rowSelection={this.rowSelection} columns={this.columns} dataSource={this.state.items}
                     pagination={{
                         showSizeChanger: true,
-                        onChange: this.onPageChange,
                         pageSizeOptions: ["2", "3", "4", "5"],
                         defaultPageSize: 10, total: this.state.total,
                         hideOnSinglePage: true

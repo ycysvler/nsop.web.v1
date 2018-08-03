@@ -3,6 +3,7 @@ import {Layout, Menu, Button, Row, Icon, Col, Input, Breadcrumb, Card} from 'ant
 import {HashRouter as Router, Link, Switch, Route} from 'react-router-dom';
 import './index.less';
 import {RegisterActions, RegisterStore} from "./reflux";
+import {AppActions, AppStore} from '../../appflux';
 
 const {Header, Content, Sider} = Layout;
 
@@ -31,6 +32,9 @@ export default class NodeRegister extends React.Component {
             }
         }
 
+        if(type === 'report'){
+            AppActions.message('success','注册成功！');
+        }
     }
 
 
@@ -83,7 +87,8 @@ export default class NodeRegister extends React.Component {
                                     <Col span={8}><span>本机地址</span></Col>
                                     <Col span={16}>
                                         <Input value={this.state.localhost}
-                                               onChange={this.onChange}
+                                               onChange={(e) => {
+                                                   this.setState({localhost: e.target.value})}}
                                                placeholder=""/></Col>
                                 </Row>
                                 <Row className="row-margin-bottom">
@@ -117,8 +122,6 @@ export default class NodeRegister extends React.Component {
                         </Col>
                         <Col span={8}></Col>
                     </Row>
-
-
                 </Content>
             </Layout>
         );

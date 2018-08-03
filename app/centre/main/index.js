@@ -1,10 +1,13 @@
 import React from 'react';
-import {Layout, Menu, Button} from 'antd';
+import {Layout, Menu, Button,Icon} from 'antd';
 import {HashRouter as Router,Link, Switch, Route} from 'react-router-dom';
 import OrganizationList from '../org/list';
+import SourceList from '../source/list';
+import SourceInfo from '../source/info';
 import NotFound from '../../notfound';
 import './main.less';
-const {SubMenu} = Menu;
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
 const {Header, Content, Sider} = Layout;
 
 export default class CentrePlatform extends React.Component {
@@ -41,6 +44,9 @@ export default class CentrePlatform extends React.Component {
                         <Switch>
                             {/*外观.快速检索.历史查询*/}
                             <Route path="/centre/org" component={OrganizationList}/>
+                            <Route path="/centre/source/:id" component={SourceInfo}/>
+                            <Route path="/centre/source" component={SourceList}/>
+
 
                             <Route component={NotFound}/>
                         </Switch>

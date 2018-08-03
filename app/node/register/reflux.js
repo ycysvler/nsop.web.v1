@@ -25,6 +25,8 @@ const RegisterStore = Reflux.createStore({
     },
 
     onReport:function(centerhost, localhost, code, name){
+        let self = this;
+
         let url = 'http://' + centerhost + ':4999/nsop/hamaster/api/org/report';
         var param = {
             centerip:centerhost,
@@ -33,9 +35,16 @@ const RegisterStore = Reflux.createStore({
             name:name
         };
         propx.post(url, param, (code, data) => {
-            self.trigger('report', data);
+            let node_url = 'http://' + localhost + ':4999/nsop/hamaster/api/regist';
+            console.log('node_url',node_url);
+            console.log('data',data.data);
+            data.data.parentip = centerhost;
+            propx.post(node_url, data.data, (code, data)=>{
+                self.trigger('report', data);
+            });
         });
     }
+
 });
 
 
