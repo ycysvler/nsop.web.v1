@@ -26,7 +26,22 @@ export default class CentrePlatform extends React.Component {
                     <div style={{float: 'right'}}>
                         <Layout style={{"background": "white"}}>
                             <Content>
-
+                                <Menu
+                                    mode="horizontal"
+                                >
+                                    <SubMenu key="sub1" title={<span><Icon type="appstore" /><span>system</span></span>}>
+                                        <Menu.Item key="org"><Link to='/centre/org'><span>org</span></Link></Menu.Item>
+                                        <MenuItemGroup key="g1" title="Item 1">
+                                            <Menu.Item key="2">Option 2</Menu.Item>
+                                        </MenuItemGroup>
+                                    </SubMenu>
+                                    <SubMenu key="sub4" title={<span><Icon type="setting" /><span>source</span></span>}>
+                                        <Menu.Item key="source"><Link to='/centre/source'><span>source</span></Link></Menu.Item>
+                                        <Menu.Item key="10">Option 10</Menu.Item>
+                                        <Menu.Item key="11">Option 11</Menu.Item>
+                                        <Menu.Item key="12">Option 12</Menu.Item>
+                                    </SubMenu>
+                                </Menu>
                             </Content>
 
                             <Sider width={160} className="box"

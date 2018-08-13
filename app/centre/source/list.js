@@ -81,15 +81,13 @@ export default class SourceList extends React.Component {
     render() {
         return (<Layout className="bg-white">
                 <Breadcrumb className="breadcrumb">
-                    <Breadcrumb.Item>系统管理</Breadcrumb.Item>
-                    <Breadcrumb.Item>节点管理</Breadcrumb.Item>
+                    <Breadcrumb.Item>版本列表</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <div className="list-toolbar">
                     <Button type="danger" className="margin-right-8" onClick={this.onDelete}>删除节点</Button>
-                    <Link to='/main/system/user/info'><Button type="primary">新建节点</Button></Link>
+                    <Link to='/node/register'><Button type="primary">新建节点</Button></Link>
                 </div>
-
                 <Table
                     rowKey="_id"
                     rowSelection={this.rowSelection} columns={this.columns} dataSource={this.state.items}

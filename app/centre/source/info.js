@@ -79,8 +79,8 @@ export default class SourceInfo extends React.Component {
 
         return (<Layout className="bg-white centre-source">
                 <Breadcrumb className="breadcrumb">
-                    <Breadcrumb.Item>系统管理</Breadcrumb.Item>
-                    <Breadcrumb.Item>节点管理</Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/centre/source'>版本列表</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item>版本详情</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Content>
@@ -193,6 +193,7 @@ export default class SourceInfo extends React.Component {
                         </Col>
                         <Col span={2}></Col>
                     </Row>
+
                 </Content>
 
             </Layout>
