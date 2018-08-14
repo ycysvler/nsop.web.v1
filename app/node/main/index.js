@@ -44,7 +44,7 @@ export default class NodeSystem extends React.Component {
         return (
             <Layout className="main-root">
                 <Header style={{height: 65}} className="header">
-                    <div className="logo">节点</div>
+                    <div className="logo">节点系统</div>
                     <div style={{float: 'right'}}>
                         <Layout style={{"background": "white"}}>
                             <Content>

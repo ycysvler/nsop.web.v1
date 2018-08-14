@@ -6,12 +6,24 @@ const SourceActions = Reflux.createActions([
         'getList',
         'single',
         'services',
-        'remove'
+        'remove',
+        'create'
     ]
 );
 
 const SourceStore = Reflux.createStore({
     listenables: [SourceActions],
+
+    onCreate:function(info){
+        let self = this;
+        let url = Config.hamaster + "/nsop/hamaster/api/source";
+
+        let param = info;
+
+        propx.post(url, param, (code, data) => {
+            self.trigger('create', data);
+        });
+    },
 
     onServices:function(id, items){
         let self = this;

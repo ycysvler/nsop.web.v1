@@ -4,7 +4,7 @@ import propx from '../../http/proxy';
 
 const OrganizationActions = Reflux.createActions([
         'getList',
-    'remove'
+        'remove'
     ]
 );
 

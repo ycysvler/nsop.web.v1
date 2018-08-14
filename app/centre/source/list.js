@@ -35,25 +35,30 @@ export default class SourceList extends React.Component {
 
     columns = [
         {
-            title: 'type',
+            title: '类型',
             dataIndex: 'type',
         },
         {
-            title: 'version',
+            title: '版本',
             dataIndex:'version',
             render: (text,record) =>{ return <Link to={`/centre/source/${record._id}`}>{text}</Link>},
         },
         {
-            title: 'targetpath',
-            dataIndex: 'targetpath',
-        },
-        {
-            title: 'sourcepath',
+            title: '源位置',
             dataIndex: 'sourcepath'
         },
         {
-            title: 'describe',
+            title: '目标位置',
+            dataIndex: 'targetpath',
+        },
+        {
+            title: '描述信息',
             dataIndex: 'describe',
+        },
+        {
+            title: '分发',
+            dataIndex:'_id',
+            render: (text,record) =>{ return <Link to={`/centre/distribute/${record._id}`}>分发</Link>},
         }];
 
 
@@ -85,8 +90,8 @@ export default class SourceList extends React.Component {
                 </Breadcrumb>
 
                 <div className="list-toolbar">
-                    <Button type="danger" className="margin-right-8" onClick={this.onDelete}>删除节点</Button>
-                    <Link to='/node/register'><Button type="primary">新建节点</Button></Link>
+                    <Button type="danger" className="margin-right-8" onClick={this.onDelete}>删除服务</Button>
+                    <Link to='/centre/source/create'><Button type="primary">添加服务</Button></Link>
                 </div>
                 <Table
                     rowKey="_id"

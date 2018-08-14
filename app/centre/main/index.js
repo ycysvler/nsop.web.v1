@@ -4,6 +4,7 @@ import {HashRouter as Router,Link, Switch, Route} from 'react-router-dom';
 import OrganizationList from '../org/list';
 import SourceList from '../source/list';
 import SourceInfo from '../source/info';
+import Distribute from '../source/distribute';
 import NotFound from '../../notfound';
 import './main.less';
 const SubMenu = Menu.SubMenu;
@@ -22,21 +23,19 @@ export default class CentrePlatform extends React.Component {
         return (
             <Layout className="main-root">
                 <Header style={{height:65}} className="header">
-                    <div className="logo" >中央</div>
+                    <div className="logo" >中央平台</div>
                     <div style={{float: 'right'}}>
                         <Layout style={{"background": "white"}}>
                             <Content>
                                 <Menu
                                     mode="horizontal"
                                 >
-                                    <SubMenu key="sub1" title={<span><Icon type="appstore" /><span>system</span></span>}>
-                                        <Menu.Item key="org"><Link to='/centre/org'><span>org</span></Link></Menu.Item>
-                                        <MenuItemGroup key="g1" title="Item 1">
-                                            <Menu.Item key="2">Option 2</Menu.Item>
-                                        </MenuItemGroup>
+                                    <SubMenu key="sub1" title={<span><Icon type="appstore" /><span>基础数据</span></span>}>
+                                        <Menu.Item key="org"><Link to='/centre/org'><span>节点管理</span></Link></Menu.Item>
+
                                     </SubMenu>
-                                    <SubMenu key="sub4" title={<span><Icon type="setting" /><span>source</span></span>}>
-                                        <Menu.Item key="source"><Link to='/centre/source'><span>source</span></Link></Menu.Item>
+                                    <SubMenu key="sub4" title={<span><Icon type="setting" /><span>服务管理</span></span>}>
+                                        <Menu.Item key="source"><Link to='/centre/source'><span>服务列表</span></Link></Menu.Item>
                                         <Menu.Item key="10">Option 10</Menu.Item>
                                         <Menu.Item key="11">Option 11</Menu.Item>
                                         <Menu.Item key="12">Option 12</Menu.Item>
@@ -61,7 +60,7 @@ export default class CentrePlatform extends React.Component {
                             <Route path="/centre/org" component={OrganizationList}/>
                             <Route path="/centre/source/:id" component={SourceInfo}/>
                             <Route path="/centre/source" component={SourceList}/>
-
+                            <Route path="/centre/distribute/:id" component={Distribute} />
 
                             <Route component={NotFound}/>
                         </Switch>
