@@ -3,6 +3,7 @@ import {Layout, Menu, Button,Icon} from 'antd';
 import {HashRouter as Router,Link, Switch, Route} from 'react-router-dom';
 import OrganizationList from '../org/list';
 import SourceList from '../source/list';
+import OrgSourceList from '../orgsource/list';
 import SourceInfo from '../source/info';
 import Distribute from '../source/distribute';
 import NotFound from '../../notfound';
@@ -36,9 +37,8 @@ export default class CentrePlatform extends React.Component {
                                     </SubMenu>
                                     <SubMenu key="sub4" title={<span><Icon type="setting" /><span>服务管理</span></span>}>
                                         <Menu.Item key="source"><Link to='/centre/source'><span>服务列表</span></Link></Menu.Item>
-                                        <Menu.Item key="10">Option 10</Menu.Item>
-                                        <Menu.Item key="11">Option 11</Menu.Item>
-                                        <Menu.Item key="12">Option 12</Menu.Item>
+                                        <Menu.Item key="orgsource"><Link to='/centre/orgsource'><span>节点服务表</span></Link></Menu.Item>
+
                                     </SubMenu>
                                 </Menu>
                             </Content>
@@ -60,6 +60,7 @@ export default class CentrePlatform extends React.Component {
                             <Route path="/centre/org" component={OrganizationList}/>
                             <Route path="/centre/source/:id" component={SourceInfo}/>
                             <Route path="/centre/source" component={SourceList}/>
+                            <Route path="/centre/orgsource" component={OrgSourceList}/>
                             <Route path="/centre/distribute/:id" component={Distribute} />
 
                             <Route component={NotFound}/>

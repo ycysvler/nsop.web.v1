@@ -3,10 +3,12 @@ import Config from 'config';
 import propx from '../../http/proxy';
 
 const SourceActions = Reflux.createActions([
-        'getList',
+        'sources',
+        'orgsources',
         'single',
         'services',
         'remove',
+        'publish',
         'create'
     ]
 );
@@ -35,8 +37,27 @@ const SourceStore = Reflux.createStore({
             self.trigger('services', data);
         });
     },
-    //获取列表
-    onGetList: function () {
+
+    onPublish(ip, id){
+        let self = this;
+        let url = `http://${ip}:4999/nsop/hamaster/api/update/${id}`;
+
+        let param = {};
+
+        propx.get(url, param, (code, data) => {
+            // 没有数据
+            if (data.statusCode === 404) {
+                self.items = [];
+            }
+            else {
+                self.items = data.data;
+            }
+
+            self.trigger('publish', data.data);
+        });
+    },
+
+    onSources: function () {
         let self = this;
         let url = Config.hamaster + "/nsop/hamaster/api/source";
 
@@ -51,7 +72,26 @@ const SourceStore = Reflux.createStore({
                 self.items = data.data;
             }
 
-            self.trigger('getList', data.data);
+            self.trigger('sources', data.data);
+        });
+    },
+
+    onOrgsources: function () {
+        let self = this;
+        let url = Config.hamaster + "/nsop/hamaster/api/orgsource";
+
+        let param = {};
+
+        propx.get(url, param, (code, data) => {
+            // 没有数据
+            if (data.statusCode === 404) {
+                self.items = [];
+            }
+            else {
+                self.items = data.data;
+            }
+
+            self.trigger('orgsources', data.data);
         });
     },
     //获取列表
@@ -69,7 +109,7 @@ const SourceStore = Reflux.createStore({
     //获取列表
     onRemove: function (ids) {
         let self = this;
-        let url = Config.hamaster + "/nsop/hamaster/api/organizations";
+        let url = Config.hamaster + "/nsop/hamaster/api/source";
 
         let param = ids;
 
@@ -77,8 +117,6 @@ const SourceStore = Reflux.createStore({
             self.trigger('remove', data);
         });
     }
-
-
 });
 
 

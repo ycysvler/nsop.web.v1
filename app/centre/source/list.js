@@ -21,16 +21,16 @@ export default class SourceList extends React.Component {
     }
 
     onStatusChange = (type, data) => {
-        if (type === 'getList') {
+        if (type === 'sources') {
             this.setState({items: data, total: data.length});
         }
         if (type === 'remove') {
-            SourceActions.getList();
+            SourceActions.sources();
         }
     }
 
     componentDidMount() {
-        SourceActions.getList();
+        SourceActions.sources();
     }
 
     columns = [
@@ -79,7 +79,6 @@ export default class SourceList extends React.Component {
     };
 
     onDelete = () => {
-        console.log(this.state.selectedRowKeys);
         SourceActions.remove(this.state.selectedRowKeys);
     };
 
