@@ -4,7 +4,7 @@ import {HashRouter as Router,Link, Switch, Route} from 'react-router-dom';
 import OrganizationList from '../org/list';
 import SourceList from '../source/list';
 import OrgSourceList from '../orgsource/list';
-import VehicleList from '../﻿vehicle/list';
+import VehicleList from '../vehicle/list';
 import SourceInfo from '../source/info';
 import Distribute from '../source/distribute';
 import NotFound from '../../notfound';
@@ -34,6 +34,7 @@ export default class CentrePlatform extends React.Component {
                                 >
                                     <SubMenu key="sub1" title={<span><Icon type="appstore" /><span>基础数据</span></span>}>
                                         <Menu.Item key="org"><Link to='/centre/org'><span>节点管理</span></Link></Menu.Item>
+                                        <Menu.Item key="vehicle"><Link to='/centre/vehicle'><span>车型管理</span></Link></Menu.Item>
 
                                     </SubMenu>
                                     <SubMenu key="sub4" title={<span><Icon type="setting" /><span>服务管理</span></span>}>
