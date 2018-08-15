@@ -4,6 +4,7 @@ import {HashRouter as Router,Link, Switch, Route} from 'react-router-dom';
 import OrganizationList from '../org/list';
 import SourceList from '../source/list';
 import OrgSourceList from '../orgsource/list';
+import VehicleList from '../﻿vehicle/list';
 import SourceInfo from '../source/info';
 import Distribute from '../source/distribute';
 import NotFound from '../../notfound';
@@ -62,7 +63,7 @@ export default class CentrePlatform extends React.Component {
                             <Route path="/centre/source" component={SourceList}/>
                             <Route path="/centre/orgsource" component={OrgSourceList}/>
                             <Route path="/centre/distribute/:id" component={Distribute} />
-
+                            <Route path="/centre/vehicle" component={VehicleList} />
                             <Route component={NotFound}/>
                         </Switch>
                     </Router>

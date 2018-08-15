@@ -62,6 +62,10 @@ export default class SourceInfo extends React.Component {
     };
 
     next = () => {
+        if(this.state.page === 0){
+            let info = this.state.info;
+            SourceActions.create(info);
+        }
         const page = this.state.page + 1;
         this.setState({page});
     };
