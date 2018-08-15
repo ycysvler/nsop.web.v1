@@ -107,7 +107,7 @@ export default class VehicleList extends React.Component {
                         onSearch={value => console.log(value)}
                         style={{ width: 200 }}
                     />
-                     
+
                 </div>
 
                 <Table

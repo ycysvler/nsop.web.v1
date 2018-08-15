@@ -1,9 +1,9 @@
-import Reflux from 'reflux'; 
+import Reflux from 'reflux';
 import Config from 'config';
 import propx from '../../http/proxy';
 
 const OrganizationActions = Reflux.createActions([
-    'getList'
+        'getList'
     ]
 );
 
@@ -12,7 +12,7 @@ const OrganizationStore = Reflux.createStore({
 
     //获取列表
     onGetList: function (pageIndex, pageSize) {
-        let self = this; 
+        let self = this;
         let url = Config.hamaster + "/nsop/hamaster/api/organizations";
 
         let param = {};
@@ -36,5 +36,5 @@ const OrganizationStore = Reflux.createStore({
 });
 
 
-exports.OrganizationActions = OrganizationActions; 
+exports.OrganizationActions = OrganizationActions;
 exports.OrganizationStore = OrganizationStore;
