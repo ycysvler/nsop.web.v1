@@ -81,7 +81,7 @@ export default class VehicleList extends React.Component {
         return (<Layout className="bg-white">
                 <Breadcrumb className="breadcrumb">
                     <Breadcrumb.Item>基础数据</Breadcrumb.Item>
-                    <Breadcrumb.Item>车型管理</Breadcrumb.Item>
+                    <Breadcrumb.Item>认证信息</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Content className='content'>

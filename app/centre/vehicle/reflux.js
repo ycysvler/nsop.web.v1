@@ -1,5 +1,6 @@
 import Reflux from 'reflux';
 import Config from 'config';
+import moment from 'moment';
 import propx from '../../http/proxy';
 
 const VehicleActions = Reflux.createActions([
