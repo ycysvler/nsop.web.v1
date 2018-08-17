@@ -32,8 +32,8 @@ export default class NodeRegister extends React.Component {
             }
         }
 
-        if(type === 'report'){
-            AppActions.message('success','注册成功！');
+        if (type === 'report') {
+            AppActions.message('success', '注册成功！');
         }
     }
 
@@ -52,7 +52,7 @@ export default class NodeRegister extends React.Component {
             this.state.localhost,
             this.state.code,
             this.state.name
-            );
+        );
 
     }
 
@@ -68,60 +68,56 @@ export default class NodeRegister extends React.Component {
         return (
             <Layout className="node-register bg-white">
                 <Breadcrumb className="breadcrumb">
-                    <Breadcrumb.Item>注册</Breadcrumb.Item>
+                    <Breadcrumb.Item>节点注册</Breadcrumb.Item>
                 </Breadcrumb>
-                <Content>
+                <Content className='content'>
                     <br/>
-                    <Row>
-                        <Col offset={8} span={8}>
-                            <Card>
-                                <Row className="row-margin-bottom">
-                                    <Col span={8}><span>中心地址</span></Col>
-                                    <Col span={16}>
-                                        <Input suffix={suffix_centerhost}
-                                               value={this.state.centerhost}
-                                               onChange={this.onCenterHostChange} placeholder=""/>
-                                    </Col>
-                                </Row>
-                                <Row className="row-margin-bottom">
-                                    <Col span={8}><span>本机地址</span></Col>
-                                    <Col span={16}>
-                                        <Input value={this.state.localhost}
-                                               onChange={(e) => {
-                                                   this.setState({localhost: e.target.value})}}
-                                               placeholder=""/></Col>
-                                </Row>
-                                <Row className="row-margin-bottom">
-                                    <Col span={8}><span>本机编号</span></Col>
-                                    <Col span={16}>
-                                        <Input value={this.state.code}
-                                               onChange={(e) => {
-                                                   this.setState({code: e.target.value})
-                                               }}
-                                               placeholder=""/>
-                                    </Col>
-                                </Row>
-                                <Row className="row-margin-bottom">
-                                    <Col span={8}><span>本机名称</span></Col>
-                                    <Col span={16}>
-                                        <Input
-                                            value={this.state.name}
-                                            onChange={(e) => {
-                                                this.setState({name: e.target.value})
-                                            }}
-                                            placeholder=""/></Col>
-                                </Row>
-                                <Row className="row-margin-bottom">
-                                    <Col span={8}><span></span></Col>
-                                    <Col span={16}>
-                                        <Button type="primary"
-                                        onClick={this.onSubmit}
-                                        >提交</Button></Col>
-                                </Row>
-                            </Card>
+
+                    <Row className="row-margin-bottom">
+                        <Col span={4} className='label'><span>中心地址</span></Col>
+                        <Col span={8}>
+                            <Input suffix={suffix_centerhost}
+                                   value={this.state.centerhost}
+                                   onChange={this.onCenterHostChange} placeholder=""/>
                         </Col>
-                        <Col span={8}></Col>
                     </Row>
+                    <Row className="row-margin-bottom">
+                        <Col span={4}  className='label'><span>本机地址</span></Col>
+                        <Col span={8}>
+                            <Input value={this.state.localhost}
+                                   onChange={(e) => {
+                                       this.setState({localhost: e.target.value})
+                                   }}
+                                   placeholder=""/></Col>
+                    </Row>
+                    <Row className="row-margin-bottom">
+                        <Col span={4}  className='label'><span>本机编号</span></Col>
+                        <Col span={8}>
+                            <Input value={this.state.code}
+                                   onChange={(e) => {
+                                       this.setState({code: e.target.value})
+                                   }}
+                                   placeholder=""/>
+                        </Col>
+                    </Row>
+                    <Row className="row-margin-bottom">
+                        <Col span={4}  className='label'><span>本机名称</span></Col>
+                        <Col span={8}>
+                            <Input
+                                value={this.state.name}
+                                onChange={(e) => {
+                                    this.setState({name: e.target.value})
+                                }}
+                                placeholder=""/></Col>
+                    </Row>
+                    <Row className="row-margin-bottom">
+                        <Col span={4}><span></span></Col>
+                        <Col span={16}>
+                            <Button type="primary"
+                                    onClick={this.onSubmit}
+                            >提交</Button></Col>
+                    </Row>
+
                 </Content>
             </Layout>
         );

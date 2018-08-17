@@ -93,9 +93,7 @@ export default class VehicleList extends React.Component {
                             style={{ width: 300 }}  />
                     </div>
 
-                    <Table
-                        bordered={true}
-                        rowKey="_id"
+                    <Table bordered={true} rowKey="_id"
                         columns={this.columns} dataSource={this.state.items}
                         pagination={{
                             onChange: this.onPageChange,

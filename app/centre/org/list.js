@@ -101,21 +101,26 @@ export default class OrganizationList extends React.Component {
                     <Breadcrumb.Item>节点管理</Breadcrumb.Item>
                 </Breadcrumb>
 
-                <div className="list-toolbar">
-                    <Button type="danger"  className="margin-right-8" onClick={this.onDelete}>删除节点</Button>
-                    <Link to='/main/system/user/info'><Button type="primary">新建节点</Button></Link>
-                </div>
+                <Content className='content'>
+                    <div className="list-toolbar">
+                        <Button type="danger"  className="margin-right-8" onClick={this.onDelete}>删除节点</Button>
 
-                <Table
-                    rowKey="_id"
-                    rowSelection={this.rowSelection} columns={this.columns} dataSource={this.state.items}
-                    pagination={{
-                        showSizeChanger: true,
-                        onChange: this.onPageChange,
-                        pageSizeOptions: ["2", "3", "4", "5"],
-                        defaultPageSize: 10, total: this.state.total,
-                        hideOnSinglePage: true
-                    }} size="middle"/>
+                    </div>
+
+                    <Table
+                        rowKey="_id" bordered={true}
+                        rowSelection={this.rowSelection} columns={this.columns} dataSource={this.state.items}
+                        pagination={{
+                            showSizeChanger: true,
+                            onChange: this.onPageChange,
+                            pageSizeOptions: ["2", "3", "4", "5"],
+                            defaultPageSize: 10, total: this.state.total,
+                            hideOnSinglePage: true
+                        }} size="middle"/>
+
+                </Content>
+
+
             </Layout>
         );
     }

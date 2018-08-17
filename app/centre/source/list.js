@@ -88,12 +88,12 @@ export default class SourceList extends React.Component {
                     <Breadcrumb.Item>版本列表</Breadcrumb.Item>
                 </Breadcrumb>
 
+                <Content className='content'>
                 <div className="list-toolbar">
                     <Button type="danger" className="margin-right-8" onClick={this.onDelete}>删除服务</Button>
                     <Link to='/centre/source/create'><Button type="primary">添加服务</Button></Link>
                 </div>
-                <Table
-                    rowKey="_id"
+                <Table bordered={true} rowKey="_id"
                     rowSelection={this.rowSelection} columns={this.columns} dataSource={this.state.items}
                     pagination={{
                         showSizeChanger: true,
@@ -101,6 +101,7 @@ export default class SourceList extends React.Component {
                         defaultPageSize: 10, total: this.state.total,
                         hideOnSinglePage: true
                     }} size="middle"/>
+                </Content>
             </Layout>
         );
     }

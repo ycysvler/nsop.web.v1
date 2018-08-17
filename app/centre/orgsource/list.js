@@ -28,12 +28,12 @@ export default class OrgSourceList extends React.Component {
         if (type === 'orgsources') {
             this.setState({sources: data.sources, orgsources: data.orgsources});
         }
-        if(type === 'publish'){
+        if (type === 'publish') {
             SourceActions.orgsources();
         }
     };
 
-    onPublish=(ip, id)=>{
+    onPublish = (ip, id) => {
         SourceActions.publish(ip, id);
     };
 
@@ -43,41 +43,43 @@ export default class OrgSourceList extends React.Component {
                     <Breadcrumb.Item>服务管理</Breadcrumb.Item>
                     <Breadcrumb.Item>版本列表</Breadcrumb.Item>
                 </Breadcrumb>
-                <table className='ant-table-body'>
-                    <thead className='ant-table-thead'>
-                    <tr>
-                        <th>收费站</th>
-                        <th>地址</th>
+                <Content className='content' style={{padding:'24px'}}>
+                    <table className='ant-table-body ant-table-bordered'
+                           style={{width:'100%',borderRadius:'4px 4px 0 0',border:'1px solid #e8e8e8'}}>
+                        <thead className='ant-table-thead'>
+                        <tr>
+                            <th>收费站</th>
+                            <th>地址</th>
+                            {
+                                this.state.sources.map((item, index) => {
+                                    return <th style={{textAlign: 'center'}}
+                                               key={item._id}>{item.type}_{item.version}</th>
+                                })
+                            }
+                        </tr>
+                        </thead>
+                        <tbody className='ant-table-tbody'>
                         {
-                            this.state.sources.map((item, index) => {
-                                return <th style={{textAlign:'center'}} key={item._id}>{item.type}_{item.version}</th>
+                            this.state.orgsources.map((item, index) => {
+                                return <tr className='ant-table-row  ant-table-row-level-0' key={item.org._id}>
+                                    <td>{item.org.name}</td>
+                                    <td>{item.org.host}</td>
+                                    {
+                                        item.sources.map((source, index) => {
+                                            return <td style={{textAlign: 'center'}} key={source.source._id}>
+                                                {source.cversion ?
+                                                    <Icon style={{color: '#52c41a'}} type="check-circle"/> :
+                                                    <Button size="small"
+                                                            onClick={this.onPublish.bind(this, item.org.host, source.source._id)}>部署</Button>}</td>
+                                        })
+                                    }
+                                </tr>
                             })
                         }
-                    </tr>
-                    </thead>
-                    <tbody className='ant-table-tbody'>
-                    {
-                        this.state.orgsources.map((item, index) => {
-                            return <tr className='ant-table-row  ant-table-row-level-0' key={item.org._id}>
-                                <td>{item.org.name}</td>
-                                <td>{item.org.host}</td>
-                                {
-                                    item.sources.map((source, index) => {
-                                        return <td style={{textAlign:'center'}} key={source.source._id}>
-                                            {source.cversion ?
-                                                <Icon style={{color:'#52c41a'}} type="check-circle" /> :
-                                                <Button size="small"
-                                                onClick={this.onPublish.bind(this,item.org.host, source.source._id)}>部署</Button>}</td>
-                                    })
-                                }
-                            </tr>
-                        })
-                    }
 
-                    </tbody>
-                </table>
-
-
+                        </tbody>
+                    </table>
+                </Content>
             </Layout>
         );
     }
