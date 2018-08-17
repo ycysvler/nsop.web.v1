@@ -33,6 +33,7 @@ export default class MonitorList extends React.Component {
     columns = [
         {
             title: '状态',
+            width:60,
             dataIndex:'state',
             render: (text,record) =>{
                 return record.state?
@@ -58,6 +59,7 @@ export default class MonitorList extends React.Component {
         },
         {
             title: '时间',
+            width:300,
             dataIndex: 'updatetime',
         }];
 
