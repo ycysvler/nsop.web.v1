@@ -65,13 +65,10 @@ export default class SourceList extends React.Component {
     rowSelection = {
         onChange: (selectedRowKeys, selectedRows) => {
             this.setState({selectedRowKeys: selectedRowKeys});
-            console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
         },
         onSelect: (record, selected, selectedRows) => {
-            console.log(record, selected, selectedRows);
         },
         onSelectAll: (selected, selectedRows, changeRows) => {
-            console.log(selected, selectedRows, changeRows);
         },
         getCheckboxProps: record => ({
             disabled: record._id === '3',
