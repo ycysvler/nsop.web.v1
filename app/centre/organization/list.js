@@ -93,11 +93,6 @@ export default class OrganizationList extends React.Component {
                     <Breadcrumb.Item>用户管理</Breadcrumb.Item>
                 </Breadcrumb>
 
-                {/*<div className="list-toolbar">*/}
-
-                {/*<Link to='/main/system/user/info'><Button type="primary">新建用户</Button></Link>*/}
-                {/*</div>*/}
-
                 <Table
                     rowKey="_id"
                     rowSelection={this.rowSelection} columns={this.columns} dataSource={this.state.items}
