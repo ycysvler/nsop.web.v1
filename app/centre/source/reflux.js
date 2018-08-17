@@ -9,41 +9,45 @@ const SourceActions = Reflux.createActions([
         'services',
         'remove',
         'publish',
-        'create'
+        'create',
+        'update'
     ]
 );
 
 const SourceStore = Reflux.createStore({
     listenables: [SourceActions],
 
-    onCreate:function(info){
+    onCreate: function (info) {
         let self = this;
         let url = Config.hamaster + "/nsop/hamaster/api/source";
-
         let param = info;
-
         propx.post(url, param, (code, data) => {
             self.trigger('create', data);
         });
     },
 
-    onServices:function(id, items){
+    onUpdate: function (info) {
+        let self = this;
+        let url = Config.hamaster + "/nsop/hamaster/api/source/" + info._id;
+        let param = info;
+        propx.put(url, param, (code, data) => {
+            self.trigger('update', data);
+        });
+    },
+
+    onServices: function (id, items) {
         let self = this;
         let url = `${Config.hamaster}/nsop/hamaster/api/source/${id}/services`;
-
         let param = items;
-
         propx.post(url, param, (code, data) => {
             self.trigger('services', data);
         });
     },
 
-    onPublish(ip, id){
+    onPublish(ip, id) {
         let self = this;
         let url = `http://${ip}:4999/nsop/hamaster/api/update/${id}`;
-
         let param = {};
-
         propx.get(url, param, (code, data) => {
             // 没有数据
             if (data.statusCode === 404) {
@@ -60,9 +64,7 @@ const SourceStore = Reflux.createStore({
     onSources: function () {
         let self = this;
         let url = Config.hamaster + "/nsop/hamaster/api/source";
-
         let param = {};
-
         propx.get(url, param, (code, data) => {
             // 没有数据
             if (data.statusCode === 404) {
@@ -79,9 +81,7 @@ const SourceStore = Reflux.createStore({
     onOrgsources: function () {
         let self = this;
         let url = Config.hamaster + "/nsop/hamaster/api/orgsource";
-
         let param = {};
-
         propx.get(url, param, (code, data) => {
             // 没有数据
             if (data.statusCode === 404) {
@@ -98,9 +98,7 @@ const SourceStore = Reflux.createStore({
     onSingle: function (id) {
         let self = this;
         let url = Config.hamaster + "/nsop/hamaster/api/source/" + id;
-
         let param = {};
-
         propx.get(url, param, (code, data) => {
             self.trigger('single', data);
         });
@@ -110,9 +108,7 @@ const SourceStore = Reflux.createStore({
     onRemove: function (ids) {
         let self = this;
         let url = Config.hamaster + "/nsop/hamaster/api/source";
-
         let param = ids;
-
         propx.delete(url, param, (code, data) => {
             self.trigger('remove', data);
         });

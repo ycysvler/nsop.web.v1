@@ -70,6 +70,13 @@ export default class SourceInfo extends React.Component {
         this.setState({page});
     };
 
+    upbase =()=>{
+        let info = this.state.info;
+        SourceActions.update(info);
+        const page = this.state.page + 1;
+        this.setState({page});
+    };
+
     prev = () => {
         const page = this.state.page - 1;
         this.setState({page});
@@ -242,7 +249,11 @@ export default class SourceInfo extends React.Component {
                                         <Button type="primary" onClick={this.onSubmit}>提交</Button>
                                     }
                                     {
-                                        this.state.info._id && this.state.page < 2
+                                        this.state.info._id && this.state.page === 0
+                                        && <Button type="primary" onClick={() => this.upbase()}>Next</Button>
+                                    }
+                                    {
+                                        this.state.page === 1
                                         && <Button type="primary" onClick={() => this.next()}>Next</Button>
                                     }
                                     {
