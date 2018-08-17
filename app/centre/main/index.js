@@ -6,6 +6,7 @@ import SourceList from '../source/list';
 import OrgSourceList from '../orgsource/list';
 import MonitorList from '../monitor/list';
 import VehicleList from '../vehicle/list';
+import DialingList from '../dialing/list';
 import SourceInfo from '../source/info';
 import Distribute from '../source/distribute';
 import NotFound from '../../notfound';
@@ -33,16 +34,17 @@ export default class CentrePlatform extends React.Component {
                                 <Menu
                                     mode="horizontal"
                                 >
-                                    <SubMenu key="sub1" title={<span><Icon type="appstore" /><span>基础数据</span></span>}>
+                                    <SubMenu key="sub1" title={<span><Icon type="appstore-o" /><span>基础数据</span></span>}>
                                         <Menu.Item key="org"><Link to='/centre/org'><span>节点管理</span></Link></Menu.Item>
                                         <Menu.Item key="vehicle"><Link to='/centre/vehicle'><span>认证信息</span></Link></Menu.Item>
-
+                                    </SubMenu>
+                                    <SubMenu key="sub2" title={<span><Icon type="bulb" /><span>服务监控</span></span>}>
+                                        <Menu.Item key="monitor"><Link to='/centre/monitor'><span>节点监控</span></Link></Menu.Item>
+                                        <Menu.Item key="monitor"><Link to='/centre/dialing'><span>监控配置</span></Link></Menu.Item>
                                     </SubMenu>
                                     <SubMenu key="sub4" title={<span><Icon type="setting" /><span>服务管理</span></span>}>
                                         <Menu.Item key="source"><Link to='/centre/source'><span>服务列表</span></Link></Menu.Item>
                                         <Menu.Item key="orgsource"><Link to='/centre/orgsource'><span>节点服务表</span></Link></Menu.Item>
-                                        <Menu.Item key="monitor"><Link to='/centre/monitor'><span>节点监控</span></Link></Menu.Item>
-
                                     </SubMenu>
                                 </Menu>
                             </Content>
@@ -68,7 +70,7 @@ export default class CentrePlatform extends React.Component {
                             <Route path="/centre/distribute/:id" component={Distribute} />
                             <Route path="/centre/vehicle" component={VehicleList} />
                             <Route path="/centre/monitor" component={MonitorList} />
-
+                            <Route path="/centre/dialing" component={DialingList} />
                             <Route component={NotFound}/>
                         </Switch>
                     </Router>
