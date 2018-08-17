@@ -25,7 +25,7 @@ export default class CentrePlatform extends React.Component {
     render=()=> {
         return (
             <Layout className="main-root">
-                <Header style={{height:65}} className="header">
+                <Header style={{height:64}} className="header">
                     <div className="logo" >中央平台</div>
                     <div style={{float: 'right'}}>
                         <Layout style={{"background": "white"}}>
