@@ -13,7 +13,7 @@ const VehicleStore = Reflux.createStore({
 
     onList(platenumber, pageSize, pageIndex){
         let self = this;
-        let url = `${Config.datamanager}/nsop/data/api/vehicle?platenumber=${platenumber}&pagesize=${pageSize}&pageindex=${pageIndex}`;
+        let url = `${Config.datamanager}/nsop/basedata/api/vehicle?platenumber=${platenumber}&pagesize=${pageSize}&pageindex=${pageIndex}`;
         let param = {};
 
         propx.get(url, param, (code, data) => {
