@@ -1,5 +1,5 @@
 import React from 'react';
-import {Layout, Menu, Button, message} from 'antd';
+import {Layout, Menu, Button,Icon, message} from 'antd';
 import {HashRouter as Router, Link, Switch, Route} from 'react-router-dom';
 import NotFound from '../../notfound';
 import NodeRegister from '../register';
@@ -48,7 +48,14 @@ export default class NodeSystem extends React.Component {
                     <div style={{float: 'right'}}>
                         <Layout style={{"background": "white"}}>
                             <Content>
+                                <Menu
+                                    mode="horizontal"
+                                >
+                                    <SubMenu key="sub1" title={<span><Icon type="appstore-o" /><span>节点注册</span></span>}>
+                                        <Menu.Item key="org"><Link to='/node/register'><span>注册</span></Link></Menu.Item>
+                                         </SubMenu>
 
+                                </Menu>
                             </Content>
 
                             <Sider width={160} className="box"
