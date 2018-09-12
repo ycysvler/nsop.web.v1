@@ -2,7 +2,7 @@ import Reflux from 'reflux';
 import Config from 'config';
 import moment from 'moment';
 import propx from '../../http/proxy';
-
+import ApiPath from '../../config/apipath';
 const MonitorActions = Reflux.createActions([
         'list',
         'create'
@@ -14,7 +14,7 @@ const MonitorStore = Reflux.createStore({
 
     onList: function () {
         let self = this;
-        let url = Config.hamaster + "/nsop/hamaster/api/monitor";
+        let url = ApiPath.getHaMasterBasePath() + "/nsop/hamaster/api/monitor";
 
         let param = {};
 

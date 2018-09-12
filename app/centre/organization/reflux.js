@@ -1,6 +1,7 @@
 import Reflux from 'reflux';
 import Config from 'config';
 import propx from '../../http/proxy';
+import ApiPath from '../../config/apipath';
 
 const OrganizationActions = Reflux.createActions([
         'getList'
@@ -13,7 +14,7 @@ const OrganizationStore = Reflux.createStore({
     //获取列表
     onGetList: function (pageIndex, pageSize) {
         let self = this;
-        let url = Config.hamaster + "/nsop/hamaster/api/organizations";
+        let url = ApiPath.getHaMasterBasePath() + "/nsop/hamaster/api/organizations";
 
         let param = {};
 

@@ -8,6 +8,7 @@ import {NotFound} from '../../notfound';
 import Config from 'config';
 import {SourceStore, SourceActions} from './reflux.js';
 import './index.less';
+import ApiPath from '../../config/apipath';
 
 const {Header, Footer, Sider, Content} = Layout;
 const Step = Steps.Step;
@@ -97,7 +98,7 @@ export default class SourceInfo extends React.Component {
         const props = {
             showUploadList: false,
             name: 'file',
-            action: Config.hamaster + '/nsop/hamaster/api/source/file?id=' + this.state.info._id,
+            action: ApiPath.getHaMasterBasePath() + '/nsop/hamaster/api/source/file?id=' + this.state.info._id,
 
             onChange(info) {
                 if (info.file.status !== 'uploading') {

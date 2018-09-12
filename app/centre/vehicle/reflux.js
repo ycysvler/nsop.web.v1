@@ -2,7 +2,7 @@ import Reflux from 'reflux';
 import Config from 'config';
 import moment from 'moment';
 import propx from '../../http/proxy';
-
+import ApiPath from '../../config/apipath';
 const VehicleActions = Reflux.createActions([
         'list'
     ]
@@ -13,7 +13,8 @@ const VehicleStore = Reflux.createStore({
 
     onList(platenumber, pageSize, pageIndex){
         let self = this;
-        let url = `${Config.datamanager}/nsop/basedata/api/vehicle?platenumber=${platenumber}&pagesize=${pageSize}&pageindex=${pageIndex}`;
+
+        let url = `${ApiPath.getDataManagerBasePath()}/nsop/basedata/api/vehicle?platenumber=${platenumber}&pagesize=${pageSize}&pageindex=${pageIndex}`;
         let param = {};
 
         propx.get(url, param, (code, data) => {

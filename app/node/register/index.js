@@ -21,8 +21,7 @@ export default class NodeRegister extends React.Component {
     }
 
     getLocalHost() {
-        let i = window.location.host.split(':');
-        return i[0];
+        return document.domain;
     }
 
     onStatusChange = (type, data) => {
