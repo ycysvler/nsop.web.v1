@@ -1,6 +1,6 @@
 {
   "name":"patent",
   "titleSuffix": " - 专利",
-  "hamaster":"http://10.211.55.7:4999",
+  "hamaster":"http://localhost:4999",
   "datamanager":"http://localhost:4997"
 }
